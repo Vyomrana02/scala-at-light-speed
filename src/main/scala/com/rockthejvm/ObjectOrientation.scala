@@ -4,6 +4,8 @@ object ObjectOrientation extends App {
 
   // java equivalent: public static void main(String[] args)
 
+  class Animal // also works
+  
   // class and instance
   class Animal {
     // define fields
@@ -19,6 +21,7 @@ object ObjectOrientation extends App {
   val aDog = new Dog("Lassie")
 
   // constructor arguments are NOT fields: need to put a val before the constructor argument
+  // ie if we have class Dog(name: String) extends Animal then aDog.name will throw error but if we have like above given then it works
   aDog.name
 
   // subtype polymorphism
@@ -40,7 +43,7 @@ object ObjectOrientation extends App {
     def ?!(thought: String): Unit // valid method name
   }
 
-  // single-class inheritance, multi-trait "mixing"
+  // single-class inheritance, multi-trait (this is called as "mixing")
   class Crocodile extends Animal with Carnivore with Philosopher {
     override def eat(animal: Animal): Unit = println("I am eating you, animal!")
 
@@ -49,7 +52,7 @@ object ObjectOrientation extends App {
 
   val aCroc = new Crocodile
   aCroc.eat(aDog)
-  aCroc eat aDog // infix notation = object method argument, only available for methods with ONE argument
+  aCroc eat aDog // same as aCroc.eat(aDog) -> infix notation = object method argument, only available for methods with ONE argument
   aCroc ?! "What if we could fly?"
 
   // operators in Scala are actually methods
@@ -82,7 +85,7 @@ object ObjectOrientation extends App {
   MySingleton.apply(65)
   MySingleton(65) // equivalent to MySingleton.apply(65)
 
-  object Animal { // companions - companion object
+  object Animal { // companions - companion object (ie class Animal and object Animal)
     // companions can access each other's private fields/methods
     // singleton Animal and instances of Animal are different things
     val canLiveIndefinitely = false
@@ -130,11 +133,12 @@ object ObjectOrientation extends App {
   /*
     Benefits:
     1) works miracles in multithreaded/distributed env
-    2) helps making sense of the code ("reasoning about")
+    2) helps making sense of the code ("reasoning about") // helps to undestand code easier
    */
   val reversedList = aList.reverse // returns a NEW list
 
-  // Point #2: Scala is closest to the OO ideal
+  // Point #2: Scala is closest to the Object Oriented ideal
+  //Scala is OO and functional oriented language.
 
 
 }
