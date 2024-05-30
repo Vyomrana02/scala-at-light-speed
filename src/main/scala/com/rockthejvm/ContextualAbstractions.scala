@@ -8,7 +8,7 @@ object ContextualAbstractions {
 //    1 - context parameters/arguments
 //   */
 //  val aList = List(2,1,3,4)
-//  val anOrderedList = aList.sorted // contextual argument: (descendingOrdering)
+//  val anOrderedList = aList.sorted // contextual argument: (descendingOrdering) (cause used given in line 14 then it uses descendingOrdering whenver sorted is called.)
 //
 //  // Ordering
 //  given descendingOrdering: Ordering[Int] = Ordering.fromLessThan(_ > _) // (a,b) => a > b
