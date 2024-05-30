@@ -8,9 +8,9 @@ object PatternMatching extends App {
     case 1 => "first"
     case 2 => "second"
     case 3 => "third"
-    case _ => anInteger + "th"
+    case _ => anInteger + "th"   // _ is default
   }
-  // PM is an EXPRESSION
+  // Patern Matching is an EXPRESSION
 
   // Case class decomposition
   case class Person(name: String, age: Int)
