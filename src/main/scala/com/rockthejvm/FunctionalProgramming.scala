@@ -19,9 +19,10 @@ object FunctionalProgramming extends App {
     - return functions as results
 
     Conclusion: FunctionX = Function1, Function2, ... Function22
+    X is number of arg that the function takes
    */
 
-  val simpleIncrementer = new Function1[Int, Int] {
+  val simpleIncrementer = new Function1[Int, Int] {  // function takes 1 arg so function1
     override def apply(arg: Int): Int = arg + 1
   }
 
@@ -38,10 +39,17 @@ object FunctionalProgramming extends App {
 
   stringConcatenator("I love", " Scala") // "I love Scala"
 
+  // syntax sugar
+  val doubler: Function1[Int,Int] = (x: Int) => 2 * x
+  doubler(4) // 8
+
   // syntax sugars
   val doubler: Int => Int = (x: Int) => 2 * x
   doubler(4) // 8
 
+  val doubler = (x: Int) => 2 * x
+  doubler(4) // 8
+  
   /*
     equivalent to the much longer:
 
@@ -52,14 +60,20 @@ object FunctionalProgramming extends App {
 
   // higher-order functions: take functions as args/return functions as results
   val aMappedList: List[Int] = List(1,2,3).map(x => x + 1) // HOF
+
+  // flatmap is same as map just combine all list ie if used map then have List([1,2],[2,4],[3,6]) if use flatmap then it combines all to List(1,2,3,4,5,6))
+  val aFlatMappedList = List(1,2,3).flatMap(x => List(x, 2 * x)) 
+  
   val aFlatMappedList = List(1,2,3).flatMap { x =>
     List(x, 2 * x)
   } // alternative syntax, same as .flatMap(x => List(x, 2 * x))
+  
   val aFilteredList = List(1,2,3,4,5).filter(_ <= 3) // equivalent to x => x <= 3
 
   // all pairs between the numbers 1, 2, 3 and the letters 'a', 'b', 'c'
   val allPairs = List(1,2,3).flatMap(number => List('a', 'b', 'c').map(letter => s"$number-$letter"))
-
+  // List(1-a,1-b,1-c,2-a,2-b,2-c,3-a,3-b,3-c)
+  
   // for comprehensions
   val alternativePairs = for {
     number <- List(1,2,3)
@@ -73,12 +87,12 @@ object FunctionalProgramming extends App {
 
   // lists
   val aList = List(1,2,3,4,5)
-  val firstElement = aList.head
-  val rest = aList.tail
+  val firstElement = aList.head // 1 
+  val rest = aList.tail   // List(2,3,4,5)
   val aPrependedList = 0 :: aList // List(0,1,2,3,4,5)
   val anExtendedList = 0 +: aList :+ 6 // List(0,1,2,3,4,5,6)
 
-  // sequences
+  // sequences -> can access element at given index
   val aSequence: Seq[Int] = Seq(1,2,3) // Seq.apply(1,2,3)
   val accessedElement = aSequence(1) // the element at index 1: 2
 
