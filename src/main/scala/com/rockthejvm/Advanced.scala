@@ -10,11 +10,18 @@ object Advanced extends App {
     lazy evaluation
    */
   lazy val aLazyValue = 2
+  val lazyValueWithoutSideEffect = {
+    println("I am not so very lazy!")
+    43
+  }
+  //prints I am not so very lazy cause lazy not used
   lazy val lazyValueWithSideEffect = {
     println("I am so very lazy!")
     43
   }
+  // prints I am not so very lazy! but not next cause lazy evaluation
 
+  // prints both sentences
   val eagerValue = lazyValueWithSideEffect + 1
   // useful in infinite collections
 
@@ -22,15 +29,28 @@ object Advanced extends App {
     "pseudo-collections": Option, Try
    */
   def methodWhichCanReturnNull(): String = "hello, Scala"
-  val anOption = Option(methodWhichCanReturnNull()) // Some("hello, Scala")
+
+  if(methodWhichCanReturnNull() == null){
+    //do something
+  } 
+
+  //same as above
+  val anOption = Option(methodWhichCanReturnNull()) // Some("hello, Scala")  // Some is keyword
   // option = "collection" which contains at most one element: Some(value) or None
 
   val stringProcessing = anOption match {
     case Some(string) => s"I have obtained a valid string: $string"
     case None => "I obtained nothing"
   }
-
+  
   def methodWhichCanThrowException(): String = throw new RuntimeException
+  try {
+    methodWhichCanThrowException()
+  } catch {
+    case e: Exception => " exception occur"
+  }
+
+  // same as above
   val aTry = Try(methodWhichCanThrowException())
   // a try = "collection" with either a value if the code went well, or an exception if the code threw one
 
